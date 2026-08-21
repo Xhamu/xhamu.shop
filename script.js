@@ -6,25 +6,189 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if ('IntersectionObserver' in window && !reduceMotion) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.section, .alert-banner').forEach((el) => {
-      el.classList.add('reveal');
-      io.observe(el);
-    });
-  }
-
+  initSpotlight();
+  initPriceSplit();
+  initScrollProgress();
+  initNavActiveLink();
+  initReveal();
+  initTilt();
+  initMagnetic();
   initCalculator();
 });
+
+/* ── SPOTLIGHT: halo que sigue el cursor ──────── */
+function initSpotlight() {
+  const spot = document.getElementById('spotlight');
+  if (!spot) return;
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let raf = null;
+  window.addEventListener('pointermove', (e) => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      spot.style.setProperty('--mx', `${e.clientX}px`);
+      spot.style.setProperty('--my', `${e.clientY}px`);
+      spot.classList.add('is-active');
+      raf = null;
+    });
+  }, { passive: true });
+}
+
+/* ── PRECIOS: separa número y moneda para tipografía grande + conteo ── */
+function initPriceSplit() {
+  document.querySelectorAll('.price-value').forEach((el) => {
+    const raw = el.textContent.trim();
+    const match = raw.match(/^(\d+(?:[.,]\d+)?)\s*(.*)$/);
+    if (!match) return;
+    const [, num, cur] = match;
+    el.dataset.target = parseFloat(num.replace(',', '.'));
+    el.innerHTML = `<span class="num">${num}</span><span class="cur">${cur}</span>`;
+  });
+}
+
+/* ── BARRA DE PROGRESO DE SCROLL ──────────────── */
+function initScrollProgress() {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+  let ticking = false;
+  const update = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+    bar.style.transform = `scaleX(${pct / 100})`;
+    ticking = false;
+  };
+  update();
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+  window.addEventListener('resize', update);
+}
+
+/* ── NAV: resaltar sección activa ─────────────── */
+function initNavActiveLink() {
+  const links = Array.from(document.querySelectorAll('.nav-link'));
+  if (!links.length || !('IntersectionObserver' in window)) return;
+  const map = new Map();
+  links.forEach((link) => {
+    const id = link.getAttribute('href').slice(1);
+    const section = document.getElementById(id);
+    if (section) map.set(section, link);
+  });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const link = map.get(entry.target);
+      if (!link) return;
+      link.classList.toggle('active', entry.isIntersecting);
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+  map.forEach((_link, section) => io.observe(section));
+}
+
+/* ── REVEAL AL HACER SCROLL (secciones + tarjetas en cascada) ── */
+function initReveal() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!('IntersectionObserver' in window) || reduceMotion) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.section, .alert-banner').forEach((el) => {
+    el.classList.add('reveal');
+    io.observe(el);
+  });
+
+  const cardIo = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('in-view');
+      cardIo.unobserve(entry.target);
+      const value = entry.target.querySelector('.price-value[data-target]');
+      if (value) animateCountUp(value);
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+
+  const groups = document.querySelectorAll('.price-grid, .type-grid, .info-list');
+  groups.forEach((group) => {
+    Array.from(group.children).forEach((card, i) => {
+      card.classList.add('reveal-card');
+      card.style.setProperty('--i', i % 8);
+      cardIo.observe(card);
+    });
+  });
+}
+
+function formatNum(n) {
+  return Number.isInteger(n) ? String(n) : n.toFixed(2);
+}
+
+function animateCountUp(el) {
+  const target = Number(el.dataset.target);
+  if (!Number.isFinite(target)) return;
+  const numEl = el.querySelector('.num') || el;
+  const duration = 700;
+  const start = performance.now();
+  const ease = (t) => 1 - Math.pow(1 - t, 3);
+  function frame(now) {
+    const p = Math.min(1, (now - start) / duration);
+    const value = target * ease(p);
+    numEl.textContent = formatNum(p >= 1 ? target : Math.round(value * 10) / 10);
+    if (p < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ── TILT 3D EN TARJETAS (solo con puntero fino) ── */
+function initTilt() {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const cards = document.querySelectorAll('.price-card, .type-card');
+  cards.forEach((card) => {
+    let raf = null;
+    card.addEventListener('pointermove', (e) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.setProperty('--rx', `${(-py * 10).toFixed(2)}deg`);
+        card.style.setProperty('--ry', `${(px * 14).toFixed(2)}deg`);
+        raf = null;
+      });
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+    });
+  });
+}
+
+/* ── BOTÓN MAGNÉTICO ──────────────────────────── */
+function initMagnetic() {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  document.querySelectorAll('.btn-calc-add').forEach((btn) => {
+    btn.addEventListener('pointermove', (e) => {
+      const r = btn.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width / 2) * 0.25;
+      const y = (e.clientY - r.top - r.height / 2) * 0.35;
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+    btn.addEventListener('pointerleave', () => {
+      btn.style.transform = '';
+    });
+  });
+}
 
 function initCalculator() {
   const rowsEl = document.getElementById('calc-rows');
@@ -41,13 +205,13 @@ function initCalculator() {
     name: card.querySelector('.price-name').textContent.trim(),
     price: parsePrice(card.querySelector('.price-value').textContent),
   }));
+
   if (!PRODUCTS.length) return;
 
   const PERSONALIZE_PRICE = 3;
   const PARCHE_PRICE = 1;
   const MAX_PARCHES = 4;
   const CUSTOMS_FEE = 3;
-  const WHATSAPP_NUMBER = '34609437510';
   const STORAGE_KEY = 'xhamuCalcState';
 
   const productSelect = document.getElementById('calc-product-select');
@@ -58,7 +222,6 @@ function initCalculator() {
   const subShippingEl = document.getElementById('calc-sub-shipping');
   const subCustomsEl = document.getElementById('calc-sub-customs');
   const totalEl = document.getElementById('calc-total');
-  const whatsappLink = document.getElementById('calc-whatsapp');
 
   let rows = [];
   let rowIdSeq = 0;
@@ -138,47 +301,12 @@ function initCalculator() {
     return { productsTotal, shipping, customs, total: productsTotal + shipping + customs };
   }
 
-  function buildWhatsAppMessage() {
-    if (!rows.length) return 'Hola, quiero hacer un pedido';
-    const { productsTotal, shipping, customs, total } = calcTotals();
-    const lines = ['Hola, quiero hacer este pedido:', ''];
-    rows.forEach((r) => {
-      const p = PRODUCTS.find((x) => x.id === r.productId);
-      lines.push(`${r.units.length}x ${p.name} — ${formatEUR(rowSubtotal(r))}`);
-      r.units.forEach((u, i) => {
-        const details = [];
-        if (u.personalize) {
-          const nombre = u.nombre.trim();
-          const numero = u.numero.trim();
-          details.push(nombre || numero
-            ? `${nombre || '(nombre pendiente)'} / ${numero || '(número pendiente)'}`
-            : 'personalización pendiente de indicar');
-        }
-        if (u.parches > 0) details.push(`${u.parches} parche${u.parches > 1 ? 's' : ''}`);
-        if (details.length) lines.push(`  · Unidad ${i + 1}: ${details.join(', ')}`);
-      });
-    });
-    lines.push('');
-    lines.push(`Subtotal productos: ${formatEUR(productsTotal)}`);
-    lines.push(`Envío: ${formatEUR(shipping)}`);
-    lines.push(`Arancel: ${formatEUR(customs)}`);
-    lines.push(`Total: ${formatEUR(total)}`);
-    return lines.join('\n');
-  }
-
-  function updateWhatsAppLink() {
-    const text = encodeURIComponent(buildWhatsAppMessage());
-    whatsappLink.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
-    whatsappLink.classList.toggle('is-disabled', rows.length === 0);
-  }
-
   function updateSummary() {
     const { productsTotal, shipping, customs, total } = calcTotals();
     subProductsEl.textContent = formatEUR(productsTotal);
     subShippingEl.textContent = rows.length ? formatEUR(shipping) : '—';
     subCustomsEl.textContent = rows.length ? formatEUR(customs) : '—';
     totalEl.textContent = formatEUR(total);
-    updateWhatsAppLink();
   }
 
   function renderUnit(u, i) {
@@ -312,12 +440,7 @@ function initCalculator() {
       if (digits !== e.target.value) e.target.value = digits;
       unit.numero = digits;
     }
-    updateWhatsAppLink();
     saveState();
-  });
-
-  whatsappLink.addEventListener('click', (e) => {
-    if (whatsappLink.classList.contains('is-disabled')) e.preventDefault();
   });
 
   clearBtn.addEventListener('click', () => {
