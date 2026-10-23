@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xhamu.github.io/xhamu.shop/sitemap.xml
