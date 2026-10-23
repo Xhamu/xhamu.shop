@@ -92,11 +92,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 
 /* ── HERO: la banda roja cruzada, como la de una equipación ── */
+/* ocupa todo el ancho y recorta la banda para que la página no se desplace de lado */
 .hero {
   position: relative;
-  max-width: var(--wrap);
-  margin: 0 auto;
-  padding: 36px var(--gutter) 28px;
+  overflow: hidden;
+  padding: 36px max(var(--gutter), calc((100% - var(--wrap)) / 2 + var(--gutter))) 28px;
   isolation: isolate;
 }
 
@@ -104,8 +104,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
   content: '';
   position: absolute;
   z-index: -1;
-  left: calc(50% - 75vw);
-  width: 150vw;
+  left: -25%;
+  width: 150%;
   top: 30%;
   height: 54px;
   background: var(--red);
@@ -679,7 +679,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* ── PANTALLAS ANCHAS ─────────────────────────── */
 @media (min-width: 720px) {
-  .hero { padding-top: 56px; padding-bottom: 40px; }
+  .hero { padding-block: 56px 40px; }
   .hero::before { height: 72px; top: 36%; transform: rotate(-5deg); }
   .hero-lead { font-size: 18px; }
   .group { padding-top: 48px; }
