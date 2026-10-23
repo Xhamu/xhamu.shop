@@ -19,13 +19,13 @@ No hay carrito ni checkout: el cliente elige de la lista de precios y contacta d
 
 ## Editar precios o secciones
 
-Todo el contenido vive en `index.html`. Cada tipo de prenda es una tarjeta `.price-card` dentro de `.price-grid`:
+Todo el contenido vive en `index.html`. Cada prenda es una línea `.product` dentro de su lista `.products`:
 
 ```html
-<div class="price-card"><span class="price-name">⚽ Fans</span><span class="price-value">6 €</span></div>
+<li class="product" data-calc-id="fan" data-price="15"><span class="product-name">Fan version</span><span class="price">15<small>€</small></span></li>
 ```
 
-Para añadir o cambiar un precio, edita o duplica esa línea. Las demás secciones (cómo comprar, tipos, tallas, cuidado, FAQ, envío) son listas simples de texto en el mismo archivo.
+Para añadir o cambiar un precio, edita o duplica esa línea. `data-price` es el precio que usa la calculadora (cámbialo junto al visible) y `data-calc-id` debe ser único; sin esos dos atributos la línea solo se muestra, sin botón +. Las demás secciones (cómo comprar, tipos, tallas, cuidado, FAQ, envío) son listas simples de texto en el mismo archivo.
 
 ---
 

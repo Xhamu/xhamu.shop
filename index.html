@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>XHAMU.SHOP — Camisetas de fútbol</title>
   <meta name="description" content="Camisetas de fútbol Fan, Player y Retro. Personaliza con nombre, número y parches, y calcula el precio total al instante." />
-  <meta name="theme-color" content="#0a0a0c" />
+  <meta name="theme-color" content="#ffffff" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
-  <link rel="apple-touch-icon" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo-192.png" />
   <link rel="canonical" href="https://xhamu.github.io/xhamu.shop/" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
@@ -30,7 +30,7 @@
   <meta name="twitter:image:alt" content="XHAMU.SHOP — camisetas de fútbol" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -38,223 +38,181 @@
   <!-- ICON SPRITE (referenced via <use>) -->
   <svg style="display:none" aria-hidden="true">
     <defs>
-      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/><rect x="3" y="14" width="7" height="7" rx="1.2"/><rect x="14" y="14" width="7" height="7" rx="1.2"/></symbol>
-      <symbol id="i-shirt" viewBox="0 0 24 24"><path d="M8 3 3 6.5 5 10l2-1.3V21h10V8.7L19 10l2-3.5L16 3l-2 2h-4z"/></symbol>
-      <symbol id="i-shirt-long" viewBox="0 0 24 24"><path d="M8 3 2 7l2.5 3.5L7 9v12h10V9l2.5 1.5L22 7 16 3l-2 2h-4z"/></symbol>
-      <symbol id="i-shorts" viewBox="0 0 24 24"><path d="M4 4h16l-.8 8.5-1.7 7.5h-3.6l-.9-8-.9 8H8.9L7.2 12.5 4 4z"/></symbol>
-      <symbol id="i-basketball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18M5.6 5.6c2 2 2 4.8 0 6.8M18.4 5.6c-2 2-2 4.8 0 6.8M5.6 18.4c2-2 4.8-2 6.8 0M18.4 18.4c-2-2-4.8-2-6.8 0"/></symbol>
-      <symbol id="i-ruler" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="1.2"/><line x1="7" y1="7" x2="7" y2="10.5"/><line x1="11" y1="7" x2="11" y2="10.5"/><line x1="15" y1="7" x2="15" y2="10.5"/><line x1="19" y1="7" x2="19" y2="10.5"/></symbol>
-      <symbol id="i-droplet" viewBox="0 0 24 24"><path d="M12 3s7 7.8 7 12.2A7 7 0 0 1 5 15.2C5 10.8 12 3 12 3z"/></symbol>
-      <symbol id="i-send" viewBox="0 0 24 24"><line x1="21" y1="3" x2="10" y2="14"/><path d="M21 3 14 21l-4-7-7-4 18-7z"/></symbol>
-      <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20 12.7 12.7 20 4 11.3V5a1 1 0 0 1 1-1h6.3L20 12.7z"/><circle cx="8" cy="8" r="1.1" style="fill:currentColor;stroke:none"/></symbol>
-      <symbol id="i-patch" viewBox="0 0 24 24"><path d="M12 3 4.5 6v6c0 4.8 3.3 7.7 7.5 9 4.2-1.3 7.5-4.2 7.5-9V6L12 3z"/></symbol>
-      <symbol id="i-cross" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></symbol>
-      <symbol id="i-customs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="8" y1="16" x2="16" y2="8"/><circle cx="9" cy="9" r="1.1" style="fill:currentColor;stroke:none"/><circle cx="15" cy="15" r="1.1" style="fill:currentColor;stroke:none"/></symbol>
-      <symbol id="i-baby" viewBox="0 0 24 24"><rect x="10" y="2" width="4" height="3" rx="1"/><path d="M8 6h8l1 2.5v10A2.5 2.5 0 0 1 14.5 21h-5A2.5 2.5 0 0 1 7 18.5v-10L8 6z"/><line x1="7.5" y1="12" x2="16.5" y2="12"/></symbol>
-      <symbol id="i-calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2.5"/><line x1="7.5" y1="6.5" x2="16.5" y2="6.5"/><line x1="7.5" y1="11" x2="7.5" y2="11"/><line x1="12" y1="11" x2="12" y2="11"/><line x1="16.5" y1="11" x2="16.5" y2="11"/><line x1="7.5" y1="15" x2="7.5" y2="15"/><line x1="12" y1="15" x2="12" y2="15"/><line x1="16.5" y1="15" x2="16.5" y2="15"/><line x1="7.5" y1="19" x2="7.5" y2="19"/><line x1="12" y1="19" x2="12" y2="19"/></symbol>
       <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></symbol>
       <symbol id="i-x" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol>
-      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.3 1.9"/></symbol>
-      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5"/></symbol>
-      <symbol id="i-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><path d="M6 11 12 5 18 11"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+      <symbol id="i-up" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
     </defs>
   </svg>
 
-  <div class="scroll-progress" id="scroll-progress"></div>
-  <div class="spotlight" id="spotlight" aria-hidden="true"></div>
-
-  <nav class="nav">
-    <a href="#" class="nav-logo">
-      <img src="logo.png" alt="XHAMU.SHOP" class="nav-logo-img" />
+  <header class="masthead">
+    <a href="#" class="brand">
+      <img src="logo-192.png" alt="" width="36" height="36" class="brand-logo" />
       <span>XHAMU.SHOP</span>
     </a>
-    <div class="nav-links">
-      <a href="#catalogo" class="nav-link">Precios</a>
-      <a href="#calculadora" class="nav-link">Calculadora</a>
-      <a href="#tallas" class="nav-link">Tallas</a>
-      <a href="#envio" class="nav-link">Envío</a>
+  </header>
+
+  <section class="hero">
+    <h1 class="hero-title">Camisetas<br />de fútbol</h1>
+    <p class="hero-lead">Consulta los precios y toca <span class="kbd-plus" aria-hidden="true">+</span> en cada prenda para calcular tu pedido con envío y arancel incluidos.</p>
+  </section>
+
+  <nav class="tabs" aria-label="Secciones">
+    <div class="tabs-track">
+      <a href="#camisetas" class="tab">Camisetas</a>
+      <a href="#manga-larga" class="tab">Manga larga</a>
+      <a href="#otros" class="tab">Otras prendas</a>
+      <a href="#extras" class="tab">Extras</a>
+      <a href="#info" class="tab">Tallas y envío</a>
     </div>
   </nav>
 
-  <header class="hero">
-    <p class="hero-sub">Catálogo</p>
-    <h1 class="hero-title">
-      <span class="word">Camisetas</span> <span class="word">de</span> <span class="word word-accent"><em>fútbol</em></span>
-    </h1>
-  </header>
-
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track">
-      <span>Fan · Player · Retro</span>
-      <span>Personaliza con nombre y número</span>
-      <span>Tallas S — 4XL</span>
-      <span>Fan · Player · Retro</span>
-      <span>Personaliza con nombre y número</span>
-      <span>Tallas S — 4XL</span>
-    </div>
-  </div>
-  <div class="ticker ticker-alt" aria-hidden="true">
-    <div class="ticker-track ticker-track-reverse">
-      <span>Envíos con arancel incluido</span>
-      <span>Parches y edición especial</span>
-      <span>Preparación en 2–5 días</span>
-      <span>Envíos con arancel incluido</span>
-      <span>Parches y edición especial</span>
-      <span>Preparación en 2–5 días</span>
-    </div>
-  </div>
-
   <main class="page">
 
-    <div class="alert-banner">
-      <svg class="icon alert-banner-icon" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>
-      <p>Por alto volumen de pedidos, el tiempo estimado actual es de <strong>20–40 días</strong> (8–12 días de preparación + 12–28 días de envío).</p>
-    </div>
-
-
-    <!-- CATÁLOGO / PRECIOS -->
-    <section class="section" id="catalogo">
-      <h2 class="section-title"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-grid"/></svg>Precios</h2>
-      <h3 class="subtitle">Camisetas y equipaciones</h3>
-      <div class="price-grid">
-        <!-- CAMISETAS -->
-        <div class="price-card" data-calc-id="fan"><span class="price-name"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shirt"/></svg>Fan version</span><span class="price-value">15 €</span></div>
-        <div class="price-card" data-calc-id="player"><span class="price-name"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shirt"/></svg>Player version</span><span class="price-value">20 €</span></div>
-        <div class="price-card" data-calc-id="retro"><span class="price-name"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shirt"/></svg>Retro</span><span class="price-value">18 €</span></div>
-        <div class="price-card" data-calc-id="especial"><span class="price-name"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shirt"/></svg>Edición especial</span><span class="price-value">18 €</span></div>
-
-        <div class="price-card" data-calc-id="ml-fan"><span class="price-name"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shirt-long"/></svg>Manga larga fan</span><span class="price-value">18 €</span></div>
-        <div class="price-card" data-calc-id="ml-player"><span class="price-name"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shirt-long"/></svg>Manga larga player</span><span class="price-value">22 €</span></div>
-        <div class="price-card" data-calc-id="ml-retro"><span class="price-name"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shirt-long"/></svg>Manga larga retro</span><span class="price-value">22 €</span></div>
-
-        <div class="price-card" data-calc-id="shorts"><span class="price-name"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shorts"/></svg>Pantalones cortos</span><span class="price-value">12 €</span></div>
-        <div class="price-card" data-calc-id="infantil"><span class="price-name"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-baby"/></svg>Conjunto infantil</span><span class="price-value">20 €</span></div>
-        <div class="price-card" data-calc-id="nba"><span class="price-name"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-basketball"/></svg>NBA</span><span class="price-value">24 €</span></div>
-
-      </div>
-
-      <h3 class="subtitle">Extras</h3>
-      <div class="price-grid price-grid-extras">
-        <div class="price-card"><span class="price-name"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-tag"/></svg>Nombre y número</span><span class="price-value">3 €</span></div>
-        <div class="price-card"><span class="price-name"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-patch"/></svg>Parche</span><span class="price-value">1 €</span></div>
-      </div>
-
-      <div class="notice">
-        <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-customs"/></svg>
-        <p>Todo pedido lleva un cargo fijo de <strong>3 €</strong> de arancel Europeo.</p>
-      </div>
-    </section>
-
-    <!-- CALCULADORA -->
-    <section class="section" id="calculadora">
-      <h2 class="section-title"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-calc"/></svg>Calculadora de pedido</h2>
-      <p class="lead">Añade productos, personalízalos y calcula el total con envío y arancel incluidos.</p>
-
-      <div class="calc-toolbar">
-        <div class="calc-add-row">
-          <select id="calc-product-select" aria-label="Elegir producto"></select>
-          <button type="button" id="calc-add-btn" class="btn-calc-add">
-            <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-plus"/></svg>
-            Añadir
-          </button>
-        </div>
-        <button type="button" id="calc-clear-btn" class="calc-clear-btn">Vaciar todo</button>
-      </div>
-
-      <div class="calc-layout">
-        <div class="calc-main">
-          <div id="calc-rows" class="calc-rows"></div>
-          <p id="calc-empty" class="calc-empty">Todavía no has añadido ningún producto.</p>
-        </div>
-
-        <div class="calc-aside">
-          <div class="calc-summary">
-            <div class="calc-summary-row"><span>Subtotal productos</span><span id="calc-sub-products">0 €</span></div>
-            <div class="calc-summary-row"><span>Envío</span><span id="calc-sub-shipping">0 €</span></div>
-            <div class="calc-summary-row"><span>Arancel (fijo)</span><span id="calc-sub-customs">0 €</span></div>
-            <div class="calc-summary-row calc-summary-total"><span>Total</span><span id="calc-total">0 €</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TIPOS -->
-    <section class="section" id="tipos">
-      <h2 class="section-title"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shirt"/></svg>Tipos de camisetas</h2>
-      <div class="type-grid">
-        <div class="type-card">
-          <h3>FAN</h3>
-          <p>Más cómodas, corte normal, logos bordados.</p>
-        </div>
-        <div class="type-card">
-          <h3>PLAYER</h3>
-          <p>Más ajustadas, tejido más fino y transpirable, logos termosellados.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TALLAS -->
-    <section class="section" id="tallas">
-      <h2 class="section-title"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-ruler"/></svg>Tallas</h2>
-      <div class="type-grid">
-        <div class="type-card">
-          <h3>S — XXL</h3>
-          <p>Tallaje europeo estándar, disponible en todas las prendas del catálogo.</p>
-        </div>
-        <div class="type-card">
-          <h3>3XL — 4XL</h3>
-          <p>Disponibilidad limitada. Consulta directamente.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ENVÍO -->
-    <section class="section" id="envio">
-      <h2 class="section-title"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-send"/></svg>Envío</h2>
-      <div class="price-grid">
-        <div class="price-card"><span class="price-name">1 camiseta</span><span class="price-value">4 €</span></div>
-        <div class="price-card"><span class="price-name">2 camisetas</span><span class="price-value">3 €</span></div>
-        <div class="price-card"><span class="price-name">3 camisetas</span><span class="price-value">2 €</span></div>
-        <div class="price-card"><span class="price-name">4 o más camisetas</span><span class="price-value">Gratis</span></div>
-      </div>
-      <div class="type-grid">
-        <div class="type-card">
-          <h3>Preparación</h3>
-          <p>2–5 días desde fecha del pedido.</p>
-        </div>
-        <div class="type-card">
-          <h3>Entrega</h3>
-          <p>7–15 días una vez enviado el pedido.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CUIDADO -->
-    <section class="section" id="cuidado">
-      <h2 class="section-title"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-droplet"/></svg>Cuidado de las camisetas</h2>
-      <p class="lead">Mejor lavar a mano o en lavadora:</p>
-      <ul class="info-list">
-        <li>Del revés</li>
-        <li>Programa corto</li>
-        <li class="no"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cross"/></svg>No secadora</li>
-        <li class="no"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cross"/></svg>No planchar</li>
-        <li>Secar al aire</li>
-        <li>Evitar doblar por zonas de logos/parches</li>
+    <!-- PRECIOS: cada .product con data-calc-id y data-price entra en la calculadora -->
+    <section class="group" id="camisetas">
+      <h2 class="group-title">Camisetas</h2>
+      <ul class="products">
+        <li class="product" data-calc-id="fan" data-price="15"><span class="product-name">Fan version</span><span class="price">15<small>€</small></span></li>
+        <li class="product" data-calc-id="player" data-price="20"><span class="product-name">Player version</span><span class="price">20<small>€</small></span></li>
+        <li class="product" data-calc-id="retro" data-price="18"><span class="product-name">Retro</span><span class="price">18<small>€</small></span></li>
+        <li class="product" data-calc-id="especial" data-price="18"><span class="product-name">Edición especial</span><span class="price">18<small>€</small></span></li>
       </ul>
+    </section>
+
+    <section class="group" id="manga-larga">
+      <h2 class="group-title">Manga larga</h2>
+      <ul class="products">
+        <li class="product" data-calc-id="ml-fan" data-price="18"><span class="product-name">Manga larga fan</span><span class="price">18<small>€</small></span></li>
+        <li class="product" data-calc-id="ml-player" data-price="22"><span class="product-name">Manga larga player</span><span class="price">22<small>€</small></span></li>
+        <li class="product" data-calc-id="ml-retro" data-price="22"><span class="product-name">Manga larga retro</span><span class="price">22<small>€</small></span></li>
+      </ul>
+    </section>
+
+    <section class="group" id="otros">
+      <h2 class="group-title">Otras prendas</h2>
+      <ul class="products">
+        <li class="product" data-calc-id="shorts" data-price="12"><span class="product-name">Pantalones cortos</span><span class="price">12<small>€</small></span></li>
+        <li class="product" data-calc-id="infantil" data-price="20"><span class="product-name">Conjunto infantil</span><span class="price">20<small>€</small></span></li>
+        <li class="product" data-calc-id="nba" data-price="24"><span class="product-name">NBA</span><span class="price">24<small>€</small></span></li>
+      </ul>
+    </section>
+
+    <section class="group" id="extras">
+      <h2 class="group-title">Extras</h2>
+      <ul class="products products-extras">
+        <li class="product"><span class="product-name">Nombre y número<span class="product-note">Por prenda</span></span><span class="price">3<small>€</small></span></li>
+        <li class="product"><span class="product-name">Parche<span class="product-note">Hasta 4 por prenda</span></span><span class="price">1<small>€</small></span></li>
+        <li class="product"><span class="product-name">Arancel europeo<span class="product-note">Fijo por pedido</span></span><span class="price">3<small>€</small></span></li>
+      </ul>
+      <p class="group-hint">El nombre, el número y los parches se añaden a cada prenda desde <strong>Tu pedido</strong>.</p>
+    </section>
+
+    <!-- INFORMACIÓN -->
+    <section class="group" id="info">
+      <h2 class="group-title">Tallas y envío</h2>
+
+      <details class="fold" open>
+        <summary>Envío<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></summary>
+        <div class="fold-body">
+          <dl class="table">
+            <div><dt>1 prenda</dt><dd>4 €</dd></div>
+            <div><dt>2 prendas</dt><dd>3 €</dd></div>
+            <div><dt>3 prendas</dt><dd>2 €</dd></div>
+            <div><dt>4 o más</dt><dd class="free">Gratis</dd></div>
+          </dl>
+          <p>Preparación: 2–5 días desde la fecha del pedido. Entrega: 7–15 días una vez enviado.</p>
+        </div>
+      </details>
+
+      <details class="fold">
+        <summary>Fan o Player<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></summary>
+        <div class="fold-body">
+          <dl class="defs">
+            <div><dt>Fan</dt><dd>Más cómodas, corte normal, logos bordados.</dd></div>
+            <div><dt>Player</dt><dd>Más ajustadas, tejido más fino y transpirable, logos termosellados.</dd></div>
+          </dl>
+        </div>
+      </details>
+
+      <details class="fold">
+        <summary>Tallas<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></summary>
+        <div class="fold-body">
+          <dl class="defs">
+            <div><dt>S a XXL</dt><dd>Tallaje europeo estándar, disponible en todas las prendas.</dd></div>
+            <div><dt>3XL y 4XL</dt><dd>Disponibilidad limitada. Consulta directamente.</dd></div>
+          </dl>
+        </div>
+      </details>
+
+      <details class="fold">
+        <summary>Cuidado de las camisetas<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></summary>
+        <div class="fold-body">
+          <p>Mejor lavar a mano o en lavadora:</p>
+          <ul class="care">
+            <li>Del revés</li>
+            <li>Programa corto</li>
+            <li>Secar al aire</li>
+            <li>Sin doblar por logos ni parches</li>
+            <li class="no">No secadora</li>
+            <li class="no">No planchar</li>
+          </ul>
+        </div>
+      </details>
     </section>
 
   </main>
 
   <footer class="footer">
-    <div class="footer-brand">
-      <img src="logo.png" alt="" class="footer-logo" />
-      <p>XHAMU.SHOP — Camisetas de fútbol</p>
-    </div>
+    <p>XHAMU.SHOP</p>
     <a href="#" class="footer-top">
-      <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-arrow-up"/></svg>
+      <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-up"/></svg>
       Volver arriba
     </a>
   </footer>
+
+  <!-- BARRA DEL TOTAL -->
+  <div class="orderbar-wrap">
+    <button type="button" class="orderbar" id="orderbar" aria-haspopup="dialog" aria-controls="order">
+      <span class="orderbar-text">
+        <span class="orderbar-label" id="orderbar-label">Total estimado</span>
+        <span class="orderbar-meta" id="orderbar-meta">Toca + en una prenda para empezar</span>
+      </span>
+      <span class="orderbar-total" id="orderbar-total">0 €</span>
+    </button>
+  </div>
+
+  <!-- PANEL: TU PEDIDO -->
+  <dialog class="sheet" id="order" aria-labelledby="order-title">
+    <div class="sheet-inner">
+      <div class="sheet-head">
+        <h2 id="order-title">Tu pedido</h2>
+        <button type="button" class="icon-btn" id="order-close" aria-label="Cerrar">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-x"/></svg>
+        </button>
+      </div>
+
+      <div class="sheet-body">
+        <div id="calc-rows" class="calc-rows"></div>
+        <p id="calc-empty" class="calc-empty">Aún no has añadido nada. Cierra este panel y toca + en las prendas que quieras.</p>
+      </div>
+
+      <div class="sheet-foot">
+        <dl class="summary">
+          <div><dt>Prendas</dt><dd id="calc-sub-products">0 €</dd></div>
+          <div><dt>Envío</dt><dd id="calc-sub-shipping">—</dd></div>
+          <div><dt>Arancel</dt><dd id="calc-sub-customs">—</dd></div>
+          <div class="summary-total"><dt>Total estimado</dt><dd id="calc-total">0 €</dd></div>
+        </dl>
+        <button type="button" id="calc-clear-btn" class="clear-btn">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-trash"/></svg>
+          Vaciar pedido
+        </button>
+      </div>
+    </div>
+  </dialog>
 
   <script src="script.js"></script>
 </body>
